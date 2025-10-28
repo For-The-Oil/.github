@@ -1,5 +1,4 @@
 # Modules LibGDX utilisés
-- ashley
 - box2dlights
 - gdx-ai
 - gdx-box2d
@@ -8,3 +7,7 @@
 - kryo-libgdx
 - gltf
 - vis-ui
+
+
+- Artemis-ODB
+- ...
