@@ -56,23 +56,61 @@ Ici, vous pouvez lire la liste des activités et leurs fragments pour une meille
  <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/ActivitesEtFragments.png" alt="Listes des Activités et de leurs fragments" height="300">
 
 ## La SplashActivity
+
+La **SplashActivity** est celle qui apparaît au démarrage du client. Si vous avez activé l'auto connection, alors elle tentera de se connecter automatiquement au dernier serveur enregistré avec les identifiants enregistré.
+En cas d'échec ou autres, vous serez simplement rediriger vers la page de connection avec une message d'erreur au cas ou un problème est survenu.
+
  <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Splash_Activity.png" alt="Splash Activity" height="300">
 
 ## La LoginActivity
 
+La **LoginActivity** se découpe en 3 fragments.
+
+Tout d'abord, le fragment de connexion classique, qui suppose que vous avez déjà un compte.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Login.png"  height="300"/>
+
+Ensuite, le fragment de création de compte. Permettant à un utilisateur de s'authentifier.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Register.png"  height="300"/>
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_ServerSettings.png"  height="300"/>
+
+Finalement, il est également possible pour l'utilisateur de modifier les paramètres de connexion au serveur applicatif.
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_ServerSettings.png" height="300"/>
+
 
 ## La HomeActivity
 
+Concernant la **HomeActivity**, c'est ici que se déroule la préparation au jeu.
+
+Dans le Main Fragment, le client choisira ici le mode de jeu qu'il souhaite rejoindre et pourra alors lancer la partie. Il est possible d'y visualiser quel Deck nous avons sélectionné.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Main.png" alt="Splash Activity"  height="300">
+
+Dans le Deck Fragment il est possible de constituer son Deck mais aussi de créer un nouveau Deck qu'on nommera alors. On peut y voir toutes les cartes qu'on a débloqué. Mais aussi leurs informations.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_DeckMenu.png" alt="Splash Activity"  height="300">
+
+Dans ce menu, on peut y voir la liste de toutes les entités existantes dans notre jeu.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_UnitsList.png" alt="Splash Activity"  height="300">
+
+Finalement, ce menu apparaît quand le joueur est en attente d'un matchmaking.
+
  <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Matchmaking.png" alt="Splash Activity"  height="300">
 
 ## La GameActivity
 
+La **GameActivity** gère l'affichage du jeu et son déroulement.
+
+Le fragment principal est le **LibGDXFragment**, on peut l'appercevoir dans le fond. C'est lui qui affiche le rendu des calculs de OpenGL ES. Par dessus, on a un autre Fragment qui est le Main. Il sert pour l'affichage du HUD.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Main.png" alt="Splash Activity"  height="300">
+
+Ici un exemple de l'utilisateur qui est en train de placer un batîment en jeu.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_PlacingBuilding.png" alt="Splash Activity"  height="300">
+
+et enfin ici, un exemple de l'utilisateur en train d'accéder au menus des paramètres pour quitter le jeu par exemple.
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Settings.png" alt="Splash Activity"  height="300">
