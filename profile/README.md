@@ -1,116 +1,297 @@
-# **For The Oil**
-## Projet de jeu vidéo Android multijoueur en 3D
-_Projet par Kenan Ammad et Gauthier Defrance_
-lien vers le **[Github](https://github.com/For-The-Oil)**
+# For The Oil  
+## Jeu vidéo Android multijoueur 3D (Client / Serveur)
 
-# Sommaire
-- [Introduction](#introduction)
+Projet réalisé par **Kenan Ammad** et **Gauthier Defrance**  
+Lien du projet : https://github.com/For-The-Oil
+
+---
+
+## Sommaire
+- [Présentation du projet](#présentation-du-projet)
+- [Architecture générale](#architecture-générale)
 - [Utilisation](#utilisation)
 - [Serveur](#serveur)
-- [Client Android](#clientAndroid)
-- [Activités](#activités)
+- [Client Android](#client-android)
+- [Architecture des activités](#architecture-des-activités)
+  - [SplashActivity](#splashactivity)
+  - [LoginActivity](#loginactivity)
+  - [HomeActivity](#homeactivity)
+  - [GameActivity](#gameactivity)
 
+---
 
-# Introduction
+## Présentation du projet
 
-Ce projet ressemble grandement à notre projet de SAE, fait cette 2025 dans le cours de M. Lemaire à CY Paris Université. Il consiste en la mise en place d'un client applicatif, serveur applicatif et une base de donnée ( il y a également une partie web, mais peu pertinente pour ce projet).
-Nous avons donc mis en place cela, le client applicatif correspond donc à notre application android qui se connecte donc à un serveur Java TCP classique. Nous utilisons la librairie [KryoNET](https://github.com/EsotericSoftware/kryonet) pour simplifier la communication et l'échange d'objet sérialisé.
+**For The Oil** est un projet de jeu vidéo Android multijoueur en 3D, développé dans le cadre d’un projet universitaire (SAE – 2025, CY Paris Université).
 
-Nous utilisons donc une structure de serveur authoritaire, ou seul lui détient la vérité. Il sert à vérifier les informations des clients et les synchroniser. Tout échanges entre clients passe obligatoirement par le serveur.
+Le projet repose sur :
+- Un **client Android**
+- Un **serveur applicatif Java TCP**
+- Une **base de données PostgreSQL**
+- Une architecture **client–serveur autoritaire**
 
-Pour la partie base de donnée nous utilisons une simple base de donnée PosteGreSQL hébérgé gratuitement chez [AlwaysData](https://www.alwaysdata.com/fr/). Nous y stockons des informations relative au joueur tel que son pseudo, mail, mot de passe hashé... Mais aussi des informations concernant par exemple les cartes qu'il a débloqué en jeu et les decks qu'il possède.
+Le serveur est le seul détenteur de la vérité :  
+il valide les actions, synchronise les clients et empêche toute modification locale frauduleuse.  
+Toutes les communications entre joueurs transitent obligatoirement par le serveur.
 
-# Utilisation
+La communication réseau est assurée par la bibliothèque **KryoNET**, permettant l’échange d’objets sérialisés de manière performante.
 
-Il est **impératif** pour pouvoir utiliser correctement l'application d'avoir un serveur applicatif de lancer. Vous ne pourrez en conséquence probablement pas le lancer vous même malheureusement à moins de recréer votre propre base de donnée à partir des fichiers dans le repo Database du projet. Vous devrez alors modifier le fichier config de votre serveur afin qu'il s'y connecte au démarrage.
+---
 
-En supposant que vous avez bien un serveur de déjà lancé, vous aurez juste à entrer le port et IP de votre serveur, puis vous authentifier pour avoir accès au jeu.
+## Architecture générale
 
-# Serveur
+- **Client Android**
+  - Interface utilisateur
+  - Rendu 3D
+  - Envoi des actions joueur
+- **Serveur Java**
+  - Validation des actions
+  - Synchronisation des états
+  - Gestion des parties et des joueurs
+- **Base de données PostgreSQL**
+  - Comptes utilisateurs
+  - Decks
+  - Cartes débloquées
+  - Statistiques
 
-Voici le message que vous devriez recevoir au démarrage de votre serveur
+La base de données est hébergée chez **AlwaysData**.
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Booting_Server.png" alt="Booting Server"  height="300">
+---
 
-et ici, la liste des commandes disponible pour le serveur
+## Utilisation
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png" alt="Server Available Commands" height="300">
+Un **serveur applicatif doit impérativement être lancé** pour pouvoir utiliser l’application.
 
-Cotés serveur, nous avons utilisé les librairies, [jackson](https://github.com/FasterXML/jackson) pour tout ce qui concerne la sérialisation et désérialisation de JSON, nous avons utilisé [postgresql](https://github.com/pgjdbc/pgjdbc) avec [HikariCP](https://github.com/brettwooldridge/HikariCP) et [jbcrypt](https://github.com/jeremyh/jBCrypt) pour toute la partie base de données et cryptage des informations.
+Sans serveur :
+- L’application ne pourra pas fonctionner correctement
+- La connexion échouera systématiquement
 
-Mais surtout, nous utilisons [Artemis-ODB](https://github.com/junkdog/artemis-odb) qui est une librairie implémentant le modèle ECS extrêmement utile dans son fonctionnement pour augmenter les performances du serveur et du client.
+Pour lancer votre propre serveur :
+1. Recréez une base de données à partir du dossier `Database`
+2. Modifiez le fichier de configuration du serveur
+3. Lancez le serveur Java
 
-# ClientAndroid
+Une fois le serveur actif :
+- Renseignez l’IP et le port dans l’application
+- Connectez-vous avec vos identifiants
+- Accédez au jeu
 
-Le client android se découpe en de multiples activités se découpant elles mêmes en de multiples fragments. Cette structure permet une meilleure expérience pour l'utilisateur. L'utilisation de ViewPager2 permet de proposer de multiples menus à l'horizontal à l'utilisateur.
+---
 
-Nous avons également utilisé la librairie [Lottie](https://github.com/airbnb/lottie-ios) qui nous permet d'afficher des sortes d'images animés sur l'écran. Particulièrement durant les chargements ou dans le menu principale pour l'image de fond.
+## Serveur
 
-Il est important également de parler de la librairie [LibGDX](https://github.com/libgdx/libgdx) sur laquel se repose beaucoup notre projet pour le jeu. Elle propose un portage sur Android pour afficher des modèles 3D complexes mais aussi une grande quantités de addons qui nous simplifie grandement la vie sur beaucoup de sujets.
+Message attendu au démarrage du serveur :
 
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Booting_Server.png"
+     alt="Console du serveur affichant le démarrage et l'initialisation"
+     height="300">
 
-# Activités
+Liste des commandes disponibles côté serveur :
 
-Ici, vous pouvez lire la liste des activités et leurs fragments pour une meilleur compréhension de la structure simplifier de notre application.
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png"
+     alt="Liste des commandes disponibles sur le serveur"
+     height="300">
 
- <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/ActivitesEtFragments.png" alt="Listes des Activités et de leurs fragments" height="300">
+### Technologies utilisées côté serveur
 
-## La SplashActivity
+- **Jackson** – Sérialisation / désérialisation JSON  
+- **PostgreSQL** – Base de données  
+- **HikariCP** – Pool de connexions  
+- **jBCrypt** – Hashage des mots de passe  
+- **Artemis-ODB** – Architecture ECS (Entity Component System)
 
-La **SplashActivity** est celle qui apparaît au démarrage du client. Si vous avez activé l'auto connection, alors elle tentera de se connecter automatiquement au dernier serveur enregistré avec les identifiants enregistré.
-En cas d'échec ou autres, vous serez simplement rediriger vers la page de connection avec une message d'erreur au cas ou un problème est survenu.
+L’utilisation d’Artemis-ODB permet d’optimiser fortement les performances, aussi bien côté serveur que côté client.
 
- <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Splash_Activity.png" alt="Splash Activity" height="300">
+---
 
-## La LoginActivity
+## Client Android
 
-La **LoginActivity** se découpe en 3 fragments.
+Le client Android est structuré autour :
+- De plusieurs **Activities**
+- De nombreux **Fragments**
+- De **ViewPager2** pour la navigation horizontale
 
-Tout d'abord, le fragment de connexion classique, qui suppose que vous avez déjà un compte.
+Cette organisation améliore la lisibilité du code et l’expérience utilisateur.
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Login.png"  height="300"/>
+### Bibliothèques principales
 
-Ensuite, le fragment de création de compte. Permettant à un utilisateur de s'authentifier.
+- **LibGDX**  
+  - Rendu 3D
+  - OpenGL ES
+  - Gestion des modèles et scènes
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Register.png"  height="300"/>
+- **Lottie**  
+  - Animations vectorielles
+  - Écrans de chargement
+  - Fond animé du menu principal
 
-Finalement, il est également possible pour l'utilisateur de modifier les paramètres de connexion au serveur applicatif.
+---
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_ServerSettings.png" height="300"/>
+## Architecture des activités
 
+Schéma simplifié des activités et fragments :
 
-## La HomeActivity
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/ActivitesEtFragments.png"
+     alt="Schéma des activités Android et de leurs fragments"
+     height="300">
 
-Concernant la **HomeActivity**, c'est ici que se déroule la préparation au jeu.
+---
 
-Dans le Main Fragment, le client choisira ici le mode de jeu qu'il souhaite rejoindre et pourra alors lancer la partie. Il est possible d'y visualiser quel Deck nous avons sélectionné.
+## SplashActivity
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Main.png" alt="Splash Activity"  height="300">
+La **SplashActivity** est affichée au lancement de l’application.
 
-Dans le Deck Fragment il est possible de constituer son Deck mais aussi de créer un nouveau Deck qu'on nommera alors. On peut y voir toutes les cartes qu'on a débloqué. Mais aussi leurs informations.
+Fonctionnalités :
+- Tentative de reconnexion automatique
+- Vérification des identifiants
+- Redirection vers l’écran de connexion en cas d’échec
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_DeckMenu.png" alt="Splash Activity"  height="300">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Splash_Activity.png"
+     alt="Écran de démarrage de l'application Android"
+     height="300">
 
-Dans ce menu, on peut y voir la liste de toutes les entités existantes dans notre jeu.
+---
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_UnitsList.png" alt="Splash Activity"  height="300">
+## LoginActivity
 
-Finalement, ce menu apparaît quand le joueur est en attente d'un matchmaking.
+La **LoginActivity** est composée de trois fragments :
 
- <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Matchmaking.png" alt="Splash Activity"  height="300">
+### Connexion
 
-## La GameActivity
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Login.png"
+     alt="Fragment de connexion utilisateur"
+     height="300">
 
-La **GameActivity** gère l'affichage du jeu et son déroulement.
+### Création de compte
 
-Le fragment principal est le **LibGDXFragment**, on peut l'appercevoir dans le fond. C'est lui qui affiche le rendu des calculs de OpenGL ES. Par dessus, on a un autre Fragment qui est le Main. Il sert pour l'affichage du HUD.
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Register.png"
+     alt="Fragment de création de compte utilisateur"
+     height="300">
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Main.png" alt="Splash Activity"  height="300">
+### Paramètres serveur
 
-Ici un exemple de l'utilisateur qui est en train de placer un batîment en jeu.
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_ServerSettings.png"
+     alt="Fragment de configuration du serveur"
+     height="300">
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_PlacingBuilding.png" alt="Splash Activity"  height="300">
+---
 
-et enfin ici, un exemple de l'utilisateur en train d'accéder au menus des paramètres pour quitter le jeu par exemple.
+## HomeActivity
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Settings.png" alt="Splash Activity"  height="300">
+La **HomeActivity** correspond à la phase de préparation avant la partie.
+
+### Menu principal
+
+Choix du mode de jeu et du deck actif.
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Main.png"
+     alt="Menu principal de la HomeActivity"
+     height="300">
+
+### Gestion des decks
+
+Création, modification et visualisation des decks.
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_DeckMenu.png"
+     alt="Menu de gestion des decks"
+     height="300">
+
+### Liste des unités
+
+Affichage de toutes les entités du jeu.
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_UnitsList.png"
+     alt="Liste complète des unités du jeu"
+     height="300">
+
+### Matchmaking
+
+Attente de joueurs avant le lancement de la partie.
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Matchmaking.png"
+     alt="Écran d'attente du matchmaking"
+     height="300">
+
+---
+
+## GameActivity
+
+La **GameActivity** gère le déroulement de la partie.
+
+- **LibGDXFragment** : rendu 3D OpenGL
+- **Fragments UI** : HUD, menus, interactions
+
+### Vue principale du jeu
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Main.png"
+     alt="Vue principale du jeu en cours de partie"
+     height="300">
+
+### Placement d’un bâtiment
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_PlacingBuilding.png"
+     alt="Placement d'un bâtiment sur la carte"
+     height="300">
+
+### Menu des paramètres
+
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Settings.png"
+     alt="Menu des paramètres en jeu"
+     height="300">
+
+---
+
+## Sources & Références
+
+### Bibliothèques et frameworks
+
+- KryoNET  
+  https://github.com/EsotericSoftware/kryonet  
+
+- LibGDX  
+  https://github.com/libgdx/libgdx  
+
+- Artemis-ODB (Entity Component System)  
+  https://github.com/junkdog/artemis-odb  
+
+- Lottie (animations)  
+  https://github.com/airbnb/lottie-android  
+
+- Jackson (JSON)  
+  https://github.com/FasterXML/jackson  
+
+- PostgreSQL JDBC Driver  
+  https://github.com/pgjdbc/pgjdbc  
+
+- HikariCP (connection pool)  
+  https://github.com/brettwooldridge/HikariCP  
+
+- jBCrypt (hashage des mots de passe)  
+  https://github.com/jeremyh/jBCrypt  
+
+---
+
+### Outils et services
+
+- Android Studio  
+  https://developer.android.com/studio  
+
+- AlwaysData (hébergement base de données)  
+  https://www.alwaysdata.com  
+
+---
+
+### Documentation officielle
+
+- Android Developers  
+  https://developer.android.com  
+
+- OpenGL ES  
+  https://www.khronos.org/opengles  
+
+---
+
+### Ressources graphiques
+
+Les captures d’écran et assets visuels présents dans ce dépôt ont été réalisés dans le cadre du projet **For The Oil** et sont utilisés uniquement à des fins pédagogiques et démonstratives.
+
