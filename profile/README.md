@@ -1,30 +1,41 @@
-# For The Oil
+# **For The Oil**
 ## Projet de jeu vidéo Android multijoueur en 3D
 _Projet par Kenan Ammad et Gauthier Defrance_
-
+lien vers le **[Github](https://github.com/For-The-Oil)**
 
 # Sommaire
 - [Introduction](#introduction)
 - [Utilisation](#utilisation)
-- [Le Serveur](#Le_serveur)
-- [Le Client Android](#android)
-- [Les Activités](#Activities)
+- [Serveur](#Le_serveur)
+- [ClientAndroid](#android)
+- [Activités](#Activities)
 
 
 # Introduction
 
+Ce projet ressemble grandement à notre projet de SAE, fait cette 2025 dans le cours de M. Lemaire à CY Paris Université. Il consiste en la mise en place d'un client applicatif, serveur applicatif et une base de donnée ( il y a également une partie web, mais peu pertinente pour ce projet).
+Nous avons donc mis en place cela, le client applicatif correspond donc à notre application android qui se connecte donc à un serveur Java TCP classique. Nous utilisons la librairie [KryoNET](https://github.com/EsotericSoftware/kryonet) pour simplifier la communication et l'échange d'objet sérialisé.
+
+Nous utilisons donc une structure de serveur authoritaire, ou seul lui détient la vérité. Il sert à vérifier les informations des clients et les synchroniser. Tout échanges entre clients passe obligatoirement par le serveur.
+
+Pour la partie base de donnée nous utilisons une simple base de donnée PosteGreSQL hébérgé gratuitement chez [AlwaysData](https://www.alwaysdata.com/fr/). Nous y stockons des informations relative au joueur tel que son pseudo, mail, mot de passe hashé... Mais aussi des informations concernant par exemple les cartes qu'il a débloqué en jeu et les decks qu'il possède.
+
 # Utilisation
 
-# Le Serveur
+Il est **impératif** pour pouvoir utiliser correctement l'application d'avoir un serveur applicatif de lancer. Vous ne pourrez en conséquence probablement pas le lancer vous même malheureusement à moins de recréer votre propre base de donnée à partir des fichiers dans le repo Database du projet. Vous devrez alors modifier le fichier config de votre serveur afin qu'il s'y connecte au démarrage.
+
+En supposant que vous avez bien un serveur de déjà lancé, vous aurez juste à entrer le port et IP de votre serveur, puis vous authentifier pour avoir accès au jeu.
+
+# Serveur
 
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Booting_Server.png" alt="Booting Server"  height="300">
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png" alt="Server Available Commands" height="300">
 
-# Le Client Android
+# ClientAndroid
 
 
 
-# Les Activités
+# Activités
 
 ## La SplashActivity
  <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Splash_Activity.png" alt="Splash Activity" height="300">
