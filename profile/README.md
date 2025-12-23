@@ -18,7 +18,7 @@ _Projet par Kenan Ammad et Gauthier Defrance_
 # Le Serveur
 
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Booting_Server.png" alt="Booting Server" width="400">
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png" alt="Server Available Commands" width="400">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png" alt="Server Available Commands" height="100">
 
 # Le Client Android
 
@@ -31,19 +31,19 @@ _Projet par Kenan Ammad et Gauthier Defrance_
 
 ## La LoginActivity
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Login.png" width="400"/>
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Register.png" width="400"/>
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_ServerSettings.png" width="400"/>
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Login.png"  height="100"/>
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_Register.png"  height="100"/>
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/LoginActivity_ServerSettings.png"  height="100"/>
 
 ## La HomeActivity
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Main.png" alt="Splash Activity" width="600">
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_DeckMenu.png" alt="Splash Activity" width="600">
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_UnitsList.png" alt="Splash Activity" width="600">
- <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Matchmaking.png" alt="Splash Activity" width="600">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Main.png" alt="Splash Activity"  height="100">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_DeckMenu.png" alt="Splash Activity"  height="100">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_UnitsList.png" alt="Splash Activity"  height="100">
+ <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/HomeActivity_Matchmaking.png" alt="Splash Activity"  height="100">
 
 ## La GameActivity
 
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Main.png" alt="Splash Activity" width="600">
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_PlacingBuilding.png" alt="Splash Activity" width="600">
-<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Settings.png" alt="Splash Activity" width="600">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Main.png" alt="Splash Activity"  height="100">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_PlacingBuilding.png" alt="Splash Activity"  height="100">
+<img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/GameActivity_Settings.png" alt="Splash Activity"  height="100">
