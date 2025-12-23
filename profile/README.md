@@ -6,9 +6,9 @@ lien vers le **[Github](https://github.com/For-The-Oil)**
 # Sommaire
 - [Introduction](#introduction)
 - [Utilisation](#utilisation)
-- [Serveur](#Le_serveur)
-- [ClientAndroid](#android)
-- [Activités](#Activities)
+- [Serveur](#serveur)
+- [Client Android](#clientAndroid)
+- [Activités](#activités)
 
 
 # Introduction
