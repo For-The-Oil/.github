@@ -28,14 +28,26 @@ En supposant que vous avez bien un serveur de déjà lancé, vous aurez juste à
 
 # Serveur
 
+Voici le message que vous devriez recevoir au démarrage de votre serveur
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Booting_Server.png" alt="Booting Server"  height="300">
+
+et ici, la liste des commandes disponible pour le serveur
+
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png" alt="Server Available Commands" height="300">
 
 # ClientAndroid
 
+Le client android se découpe en de multiples activités se découpant elles mêmes en de multiples fragments. Cette structure permet une meilleure expérience pour l'utilisateur. L'utilisation de ViewPager2 permet de proposer de multiples menus à l'horizontal à l'utilisateur.
+
+Nous avons également utilisé la librairie [Lottie](https://github.com/airbnb/lottie-ios) qui nous permet d'afficher des sortes d'images animés sur l'écran. Particulièrement durant les chargements ou dans le menu principale pour l'image de fond.
+
+Il est important également de parler de la librairie [LibGDX](https://github.com/libgdx/libgdx) sur laquel se repose beaucoup notre projet pour le jeu. Elle propose un portage sur Android pour afficher des modèles 3D complexes mais aussi une grande quantités de addons qui nous simplifie grandement la vie sur beaucoup de sujets.
 
 
 # Activités
+
+ <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/ActivitesEtFragments.png" alt="Listes des Activités et de leurs fragments" height="300">
 
 ## La SplashActivity
  <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Splash_Activity.png" alt="Splash Activity" height="300">
