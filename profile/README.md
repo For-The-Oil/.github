@@ -36,6 +36,10 @@ et ici, la liste des commandes disponible pour le serveur
 
 <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/Server_AvailableCommands.png" alt="Server Available Commands" height="300">
 
+Cotés serveur, nous avons utilisé les librairies, [jackson](https://github.com/FasterXML/jackson) pour tout ce qui concerne la sérialisation et désérialisation de JSON, nous avons utilisé [postgresql](https://github.com/pgjdbc/pgjdbc) avec [HikariCP](https://github.com/brettwooldridge/HikariCP) et [jbcrypt](https://github.com/jeremyh/jBCrypt) pour toute la partie base de données et cryptage des informations.
+
+Mais surtout, nous utilisons [Artemis-ODB](https://github.com/junkdog/artemis-odb) qui est une librairie implémentant le modèle ECS extrêmement utile dans son fonctionnement pour augmenter les performances du serveur et du client.
+
 # ClientAndroid
 
 Le client android se découpe en de multiples activités se découpant elles mêmes en de multiples fragments. Cette structure permet une meilleure expérience pour l'utilisateur. L'utilisation de ViewPager2 permet de proposer de multiples menus à l'horizontal à l'utilisateur.
@@ -46,6 +50,8 @@ Il est important également de parler de la librairie [LibGDX](https://github.co
 
 
 # Activités
+
+Ici, vous pouvez lire la liste des activités et leurs fragments pour une meilleur compréhension de la structure simplifier de notre application.
 
  <img src="https://raw.githubusercontent.com/For-The-Oil/.github/main/ressources/ActivitesEtFragments.png" alt="Listes des Activités et de leurs fragments" height="300">
 
